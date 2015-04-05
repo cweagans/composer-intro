@@ -1,0 +1,15 @@
+{
+    "name": "cweagans/composer-intro",
+    "description": "An example site that is refactored from 1999-style code to modern code.",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Cameron Eagans",
+            "email": "me@cweagans.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+      "classmap": ["classes/"]
+    }
+}

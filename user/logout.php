@@ -1,7 +1,6 @@
 <?php
 
-include_once "../classes/user.php";
-include_once "../classes/util.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 $user = User::getInstance()->logout();
 Util::redirect('/');

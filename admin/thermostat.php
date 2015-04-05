@@ -1,10 +1,7 @@
 <?php include "../includes/header.inc"; ?>
 
 <?php
-include_once __DIR__ . '/../classes/user.php';
-include_once __DIR__ . '/../classes/util.php';
-include_once __DIR__ . '/../classes/weather.php';
-include_once __DIR__ . '/../classes/thermostat.php';
+require_once __DIR__ . "/../vendor/autoload.php";
 
 $user = User::getInstance();
 if (!$user->isAuthenticated()) {
