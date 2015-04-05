@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . "/user.inc";
+include_once __DIR__ . "/../classes/user.php";
+$user = User::getInstance();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@ include_once __DIR__ . "/user.inc";
             <li><a href="/about.php">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <?php if (!user_is_authenticated()): ?>
+            <?php if (!$user->isAuthenticated()): ?>
             <li><a href="/user/login.php">Login</a></li>
             <?php else: ?>
             <li><a href="/admin/thermostat.php">Manage your habitat</a></li>

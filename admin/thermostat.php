@@ -1,23 +1,29 @@
 <?php include "../includes/header.inc"; ?>
 
 <?php
-include_once __DIR__ . '/../includes/user.inc';
-include_once __DIR__ . '/../includes/misc.inc';
-include_once __DIR__ . '/../includes/weather.inc';
-include_once __DIR__ . '/../includes/thermostat.inc';
+include_once __DIR__ . '/../classes/user.php';
+include_once __DIR__ . '/../classes/util.php';
+include_once __DIR__ . '/../classes/weather.php';
+include_once __DIR__ . '/../classes/thermostat.php';
 
-if (!user_is_authenticated()) {
-  redirect('/');
+$user = User::getInstance();
+if (!$user->isAuthenticated()) {
+  Util::redirect('/');
 }
 
+$thermostat = new Thermostat();
+
 $temperature_updated = FALSE;
-if (isset($_POST['temperature']) && thermostat_save_temperature($_POST['temperature'])) {
+if (isset($_POST['temperature']) && $thermostat->setTemperature($_POST['temperature'])) {
   $temperature = $_POST['temperature'];
   $temperature_updated = TRUE;
 }
 else {
-  $temperature = thermostat_get_temperature();
+  $temperature = $thermostat->getTemperature();
 }
+
+include __DIR__ . '/../includes/config.inc';
+$weather = new Weather($config['forecast_api_key'], $config['forecast_lat'], $config['forecast_lon']);
 
 ?>
 
@@ -66,11 +72,11 @@ else {
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item">
-            <span class="badge"><?php print weather_get_current_temperature(); ?>&#176;F</span>
+            <span class="badge"><?php print $weather->getCurrentTemperature(); ?>&#176;F</span>
             Current temperature
           </li>
           <li class="list-group-item">
-            <span class="badge"><?php print weather_get_current_humidity(); ?>%</span>
+            <span class="badge"><?php print $weather->getCurrentHumidity(); ?>%</span>
             Current humidity
           </li>
         </ul>

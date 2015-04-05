@@ -4,12 +4,13 @@
 
   <?php
   if (isset($_POST['username'])) {
-    include_once "../includes/user.inc";
-    include_once "../includes/misc.inc";
-    $valid = user_validate_credentials($_POST['username'], $_POST['password']);
+    include_once "../classes/user.php";
+    include_once "../classes/util.php";
+    $user = User::getInstance();
+
+    $valid = $user->attemptLogin($_POST['username'], $_POST['password']);
     if ($valid) {
-      user_start_session();
-      redirect("/admin/thermostat.php");
+      Util::redirect("/admin/thermostat.php");
     }
     else {
     ?>

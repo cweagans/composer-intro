@@ -1,7 +1,7 @@
 <?php
 
-include_once "../includes/user.inc";
-include_once "../includes/misc.inc";
+include_once "../classes/user.php";
+include_once "../classes/util.php";
 
-user_destroy_session();
-redirect('/');
+$user = User::getInstance()->logout();
+Util::redirect('/');
