@@ -1,5 +1,7 @@
 <?php
 
+namespace cweagans\Habitat;
+
 class User {
 
   protected $authenticated = FALSE;
@@ -49,7 +51,9 @@ class User {
    * Log out a user.
    */
   public function logout() {
-    $this->authenticated = FALSE;
+    session_destroy();
+    session_start();
+    $this->authenticated = false;
   }
 
   /**

@@ -8,8 +8,11 @@
             "email": "me@cweagans.net"
         }
     ],
-    "require": {},
+    "require": {
+      "twig/twig": "~1.0",
+      "league/route": "~1.0"
+    },
     "autoload": {
-      "classmap": ["classes/"]
+      "psr-4": {"cweagans\\Habitat\\": "src"}
     }
 }

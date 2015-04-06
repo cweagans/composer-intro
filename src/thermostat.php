@@ -1,5 +1,7 @@
 <?php
 
+namespace cweagans\Habitat;
+
 class Thermostat {
 
   protected $data_file = '/tmp/temperature.json';

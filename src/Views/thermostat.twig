@@ -1,0 +1,61 @@
+{% extends "2col.twig" %}
+
+{% block title %}Thermostat{% endblock %}
+
+{% block pagetitle %}Please select a temperature{% endblock %}
+
+{% block leftcol %}
+
+  <p>
+    Instead of temperatures, we use fun images to describe what the temperature
+    will be in your house.
+  </p>
+
+  {% if temperatureUpdated %}
+    <div class="alert alert-success" role="alert">Temperature updated to {{ temperature }}</div>
+  {% endif %}
+
+  <form method="post" action="/admin/thermostat">
+    <div class="radio">
+      <label>
+        <input type="radio" name="temperature" value="hot" {% if temperature == "hot" %}checked{% endif %}>
+        <img src="/assets/sun.jpg" width="300" alt="Surface of the sun" />
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="temperature" value="cold" {% if temperature == "cold" %}checked{% endif %}>
+        <img src="/assets/titanic.jpg" width="300" alt="Leonardo DiCaprio in Titanic" />
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="temperature" value="off" {% if temperature == "off" %}checked{% endif %}>
+        <img src="/assets/off.jpg" width="300" alt="Fuck it. Just turn it off." />
+      </label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Set temperature">
+  </form>
+  <br />
+
+{% endblock %}
+
+{% block rightcol %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Current conditions at your location</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="badge">{{ currentTemperature }}&#176;F</span>
+          Current temperature
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{ currentHumidity }}%</span>
+          Current humidity
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}

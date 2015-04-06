@@ -1,0 +1,15 @@
+{% extends "page.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <form style="width:300px; margin: 0 auto;" method="post" action="/user/login">
+    {% if loginError %}<div class="alert alert-danger" role="alert">Invalid username or password</div>{% endif %}
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Password" required="">
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+  </form>
+{% endblock %}

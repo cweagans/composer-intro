@@ -1,5 +1,7 @@
 <?php
 
+namespace cweagans\Habitat;
+
 class Weather {
   protected $latitude;
   protected $longitude;

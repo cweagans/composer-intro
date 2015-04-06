@@ -1,0 +1,15 @@
+{% extends "page.twig" %}
+
+{% block content %}
+  <h2>{% block pagetitle %}{% endblock %}</h2>
+  <hr />
+
+  <div class="row">
+    <div class="col-md-8">
+      {% block leftcol %}{% endblock %}
+    </div>
+    <div class="col-md-4">
+      {% block rightcol %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}
